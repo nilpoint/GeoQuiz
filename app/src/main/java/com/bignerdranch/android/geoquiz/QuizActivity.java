@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-
 public class QuizActivity extends AppCompatActivity {
   private Button mTrueButton;
   private Button mFalseButton;
@@ -46,6 +44,14 @@ public class QuizActivity extends AppCompatActivity {
     setContentView(R.layout.activity_quiz);
 
     mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
+    mQuestionTextView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Log.i("TextView Clicked", "Question text view is clicked.");
+        mCurrentIndex = ++mCurrentIndex % mQuestionBank.length;
+        updateQuestion();
+      }
+    });
 
     mTrueButton = (Button) findViewById(R.id.true_button);
     mTrueButton.setOnClickListener(new View.OnClickListener() {
